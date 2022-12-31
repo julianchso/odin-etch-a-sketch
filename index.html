@@ -20,7 +20,9 @@
         <button class="buttonTools">Pen</button>
         <button class="buttonTools">Random Rainbow Pen</button>
         <button class="buttonTools">Eraser</button>
-        <input type="range" id="gridSize" min="16" max="64" value="16" />
+        <button class="buttonTools">Clear</button>
+        <label for="gridSize" id="gridSizeLabel">16x16</label>
+        <input type="range" id="gridSize" min="16" max="64" value="16" oninput="updateGridSize(this)"/>
       </div>
       <div class="gridContainer"></div>
     </div>

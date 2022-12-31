@@ -65,23 +65,10 @@ body {
   height: 75%;
   background-color: antiquewhite;
   padding: 20px;
-  display: grid;
-  grid-template-rows: 1fr repeat(3, 100px) 1fr;
-  row-gap: 35px;
-}
-
-.gridContainer {
-  width: 60%;
-  height: 75%;
-  background-color: aquamarine;
-  margin: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-}
-
-.gridSquare {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #colorPicker {
@@ -94,17 +81,43 @@ body {
   border: none;
 }
 
-button {
+button, input {
   cursor: pointer;
 }
 
 .buttonTools {
-  margin: 20px;
-  border: none;
+  margin: 40px;
+  height: 75px;
+  width: 300px;
+  border: 1px solid #808080;
   border-radius: 10px;
 }
 
 #gridSize {
   margin: 0 auto;
-  width: 75%;
+  width: 50%;
+}
+
+.gridContainer {
+  width: 750px;
+  height: 750px;
+  margin: 20px;
+  padding: 30px;
+  display: grid;
+  /* grid-template-columns: 1fr;
+  grid-template-rows: 1fr; */
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  border: 1px solid #808080
+}
+
+.gridSquare {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #fff;
+}
+
+/* TODO */
+label[for="gridSize"] {
+  padding: 20px;
 }
