@@ -46,6 +46,10 @@ h6 {
   isolation: isolate;
 }
 
+body {
+  font-family: "roboto", "arial", "helvetica";
+}
+
 .appContainer {
   display: flex;
   margin: 0 auto;
@@ -63,13 +67,21 @@ h6 {
   padding: 20px;
   display: grid;
   grid-template-rows: 1fr repeat(3, 100px) 1fr;
-  row-gap: 25px;
+  row-gap: 35px;
 }
 
 .gridContainer {
   width: 60%;
   height: 75%;
   background-color: aquamarine;
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.gridSquare {
+  
 }
 
 #colorPicker {
@@ -88,4 +100,11 @@ button {
 
 .buttonTools {
   margin: 20px;
+  border: none;
+  border-radius: 10px;
+}
+
+#gridSize {
+  margin: 0 auto;
+  width: 75%;
 }
