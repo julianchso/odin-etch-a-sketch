@@ -18,8 +18,8 @@ function updateGrid() {
   gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`
 
   console.log(`updateGrid function: ${gridSize}`);
-  for (let i = 0; i <= gridSize; i++) {
-    for (let j = 0; j <= gridSize; j++) {
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
       let newDiv = document.createElement("div");
       newDiv.classList.add("gridSquare");
 
