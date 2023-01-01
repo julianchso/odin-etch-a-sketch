@@ -61,10 +61,10 @@ body {
 }
 
 .controls {
-  width: 40%;
-  height: 75%;
+  width: 500px;
+  height: 750px;
   background-color: antiquewhite;
-  padding: 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;

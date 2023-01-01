@@ -1,23 +1,28 @@
 let colorPicker = document.querySelector("#colorPicker");
 let gridContainer = document.querySelector(".gridContainer");
 let gridSize = document.querySelector("#gridSize").value;
+let penColor = document.querySelector("#colorPicker").value;
+let squares = document.querySelectorAll(".gridSquare");
+document
+  .querySelector("#colorPicker")
+  .addEventListener("change", onChangeColor);
+
+updateGrid();
 
 function updateGridSize(newGridSize) {
   document.querySelector(
     "#gridSizeLabel"
   ).textContent = `${newGridSize.value} x ${newGridSize.value}`;
   gridSize = newGridSize.value;
-  console.log(gridSize);
   updateGrid();
 }
 
 function updateGrid() {
-  gridContainer.innerHTML = ""
+  gridContainer.innerHTML = "";
 
-  gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
-  gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`
+  gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
-  console.log(`updateGrid function: ${gridSize}`);
   for (let i = 0; i < gridSize; i++) {
     for (let j = 0; j < gridSize; j++) {
       let newDiv = document.createElement("div");
@@ -26,5 +31,17 @@ function updateGrid() {
       gridContainer.appendChild(newDiv);
     }
   }
-  console.log("Grid updated");
+  squares = document.querySelectorAll(".gridSquare");
+  console.log(squares);
 }
+
+function onChangeColor() {
+  penColor = this.value;
+}
+
+squares.forEach((square) => {
+  square.addEventListener("click", function () {
+    square.style["background-color"] = penColor;
+    console.log("click");
+  });
+});
