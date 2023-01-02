@@ -48,6 +48,7 @@ h6 {
 
 body {
   font-family: "roboto", "arial", "helvetica";
+  background-color: #f0f0f0;
 }
 
 .appContainer {
@@ -85,17 +86,22 @@ button, input {
   cursor: pointer;
 }
 
-.buttonTools {
+.toolsBtn {
   margin: 40px;
   height: 75px;
-  width: 300px;
+  width: 250px;
   border: 1px solid #808080;
   border-radius: 10px;
 }
 
-#gridSize {
+.ActiveBtn {
+  background-color: #3A3B3C;
+  color: #fff
+}
+
+#gridSizeInput {
   margin: 0 auto;
-  width: 50%;
+  width: 70%;
 }
 
 .gridContainer {
@@ -106,14 +112,13 @@ button, input {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
-  border: 1px solid #808080;
-  background-color: #f0f0f0;
+  border: none;
+  background-color: #fff;
+  box-shadow: 5px 5px #808080;
 }
 
 .gridSquare {
-  /* border: 1px solid black; */
-  border-top: 1px solid black;
-  border-right: 1px solid black;
+/*  */
 }
 
 /* TODO */
