@@ -4,7 +4,7 @@ let gridSizeInput = document.querySelector("#gridSizeInput").value;
 let penColor = document.querySelector("#colorPicker").value;
 let squares = document.querySelectorAll(".gridSquare");
 let toolsBtns = document.querySelectorAll(".toolsBtn");
-let clear = document.querySelector("#clear");
+let clearBtn = document.querySelector("#clearBtn");
 
 let currentSelection = "colorPen";
 
@@ -26,6 +26,7 @@ eraser.addEventListener("click", () => {
 
 function activeMode(newSelection) {
   currentSelection = newSelection;
+  console.log(currentSelection);
   ActiveBtn(`${newSelection}`);
 }
 
@@ -34,6 +35,7 @@ document
   .addEventListener("change", onChangeColor);
 
 updateGrid();
+coloring();
 
 function updateGridSize(newGridSize) {
   document.querySelector(
@@ -41,6 +43,7 @@ function updateGridSize(newGridSize) {
   ).textContent = `${newGridSize.value} x ${newGridSize.value}`;
   gridSizeInput = newGridSize.value;
   updateGrid();
+  coloring();
 }
 
 function updateGrid() {
@@ -65,12 +68,14 @@ function onChangeColor() {
   penColor = this.value;
 }
 
-squares.forEach((square) => {
-  square.addEventListener("click", function () {
-    square.style["background-color"] = penColor;
-    console.log("click");
+function coloring() {
+  squares.forEach((square) => {
+    square.addEventListener("click", function () {
+      square.style["background-color"] = penColor;
+      console.log("click");
+    });
   });
-});
+}
 
 function ActiveBtn(newSelection) {
   eraser.classList.remove("ActiveBtn");
@@ -94,6 +99,11 @@ toolsBtns.forEach((toolsBtn) => {
   });
 });
 
-// clear.addEventListener("click", clearAll())
+clearBtn.addEventListener("click", clearAll)
 
-function clearAll() {}
+function clearAll() {
+  console.log("ClearAll");
+  squares.forEach((square) => {
+    square.style["background-color"] = "transparent";
+  });
+}
