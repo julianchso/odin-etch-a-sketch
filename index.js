@@ -5,6 +5,7 @@ let penColor = document.querySelector("#colorPicker").value;
 let squares = document.querySelectorAll(".gridSquare");
 let toolsBtns = document.querySelectorAll(".toolsBtn");
 let clearBtn = document.querySelector("#clearBtn");
+let newDiv;
 
 let currentSelection = "colorPen";
 
@@ -35,7 +36,14 @@ document
   .addEventListener("change", onChangeColor);
 
 updateGrid();
-coloring();
+
+// if (currentSelection == "colorPen") {
+//   coloring();
+//   console.log("coloring");
+// } else if (currentSelection == "eraser") {
+//   erasing();
+//   console.log("erasing");
+// }
 
 function updateGridSize(newGridSize) {
   document.querySelector(
@@ -43,7 +51,13 @@ function updateGridSize(newGridSize) {
   ).textContent = `${newGridSize.value} x ${newGridSize.value}`;
   gridSizeInput = newGridSize.value;
   updateGrid();
-  coloring();
+  // if (currentSelection == "colorPen") {
+  //   coloring();
+  //   console.log("coloring");
+  // } else if (currentSelection == "eraser") {
+  //   erasing();
+  //   console.log("erasing");
+  // }
 }
 
 function updateGrid() {
@@ -54,26 +68,46 @@ function updateGrid() {
 
   for (let i = 0; i < gridSizeInput; i++) {
     for (let j = 0; j < gridSizeInput; j++) {
-      let newDiv = document.createElement("div");
+      newDiv = document.createElement("div");
       newDiv.classList.add("gridSquare");
-
       gridContainer.appendChild(newDiv);
     }
   }
-  squares = document.querySelectorAll(".gridSquare");
-  console.log(squares);
+}
+if (currentSelection == "colorPen") {
+  gridContainer.addEventListener("mousedown", () => {
+    gridContainer.addEventListener("mouseover", coloring);
+  });
+  window.addEventListener("mouseup", () => {
+    gridContainer.removeEventListener("mouseover", coloring);
+  });
+}
+
+if (currentSelection == "eraser") {
+  gridContainer.addEventListener("mousedown", () => {
+    gridContainer.addEventListener("mouseover", erasing);
+  });
+  window.addEventListener("mouseup", () => {
+    gridContainer.removeEventListener("mouseover", erasing);
+  });
 }
 
 function onChangeColor() {
   penColor = this.value;
 }
 
-function coloring() {
+function coloring(e) {
+  e.target.style["background-color"] = penColor;
+}
+
+function erasing(e) {
+  e.target.style["background-color"] = transparent;
+}
+
+function clearAll(e) {
   squares.forEach((square) => {
-    square.addEventListener("click", function () {
-      square.style["background-color"] = penColor;
-      console.log("click");
-    });
+    console.log("clear")
+    square.style["background-color"] = transparent;
   });
 }
 
@@ -91,19 +125,4 @@ function ActiveBtn(newSelection) {
   }
 }
 
-toolsBtns.forEach((toolsBtn) => {
-  toolsBtn.addEventListener("click", function () {
-    console.log("click tool");
-    toolsBtn.classList.remove("buttonActive");
-    this.classList.add("buttonActive");
-  });
-});
-
-clearBtn.addEventListener("click", clearAll)
-
-function clearAll() {
-  console.log("ClearAll");
-  squares.forEach((square) => {
-    square.style["background-color"] = "transparent";
-  });
-}
+clearBtn.addEventListener("click", clearAll);
