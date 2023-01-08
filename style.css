@@ -49,7 +49,12 @@ h6 {
 body {
   font-family: "roboto", "arial", "helvetica";
   background-color: #f0f0f0;
-  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .appContainer {
@@ -59,7 +64,6 @@ body {
   justify-content: center;
   align-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .controls {

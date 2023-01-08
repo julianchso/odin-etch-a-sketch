@@ -14,22 +14,22 @@ let randomRainbowPen = document.querySelector("#randomRainbowPen");
 let eraser = document.querySelector("#eraser");
 
 colorPen.addEventListener("click", () => {
-  activeMode("colorPen");
+  activeBtn("colorPen");
 });
 
 randomRainbowPen.addEventListener("click", () => {
-  activeMode("randomRainbowPen");
+  activeBtn("randomRainbowPen");
 });
 
 eraser.addEventListener("click", () => {
-  activeMode("eraser");
+  activeBtn("eraser");
 });
 
 clearBtn.addEventListener("click", clearAll);
 
 function activeMode(newSelection) {
-  currentSelection = newSelection;
   ActiveBtn(`${newSelection}`);
+  currentSelection = newSelection;
 }
 
 document
@@ -61,26 +61,26 @@ function updateGrid() {
   }
 }
 
-if (currentSelection == "colorPen") {
-  console.log(`${currentSelection}`);
-  gridContainer.addEventListener("mousedown", () => {
-    gridContainer.addEventListener("mouseover", coloring);
-  });
-  window.addEventListener("mouseup", () => {
-    gridContainer.removeEventListener("mouseover", coloring);
-  });
-}
+gridContainer.addEventListener("mousedown", () => {
+  gridContainer.addEventListener("mouseover", coloring);
+});
+window.addEventListener("mouseup", () => {
+  gridContainer.removeEventListener("mouseover", coloring);
+});
 
-if (currentSelection == "eraser") {
-  console.log(`addeventlistener: ${currentSelection}`);
+gridContainer.addEventListener("mousedown", () => {
+  gridContainer.addEventListener("mouseover", erasing);
+});
+window.addEventListener("mouseup", () => {
+  gridContainer.removeEventListener("mouseover", erasing);
+});
 
-  gridContainer.addEventListener("mousedown", () => {
-    gridContainer.addEventListener("mouseover", erasing);
-  });
-  window.addEventListener("mouseup", () => {
-    gridContainer.removeEventListener("mouseover", erasing);
-  });
-}
+gridContainer.addEventListener("mousedown", () => {
+  gridContainer.addEventListener("mouseover", rainbowPen);
+});
+window.addEventListener("mouseup", () => {
+  gridContainer.removeEventListener("mouseover", rainbowPen);
+});
 
 function onChangeColor() {
   penColor = this.value;
@@ -91,6 +91,7 @@ function coloring(e) {
     e.target.classList.contains("gridSquare") &&
     currentSelection == "colorPen"
   ) {
+    console.log(`coloring()`);
     e.target.style["background-color"] = penColor;
   }
 }
@@ -106,6 +107,19 @@ function erasing(e) {
   }
 }
 
+function rainbowPen(e) {
+  red = Math.floor(Math.random() * 256);
+  green = Math.floor(Math.random() * 256);
+  blue = Math.floor(Math.random() * 256);
+
+  if (
+    e.target.classList.contains("gridSquare") &&
+    currentSelection == "randomRainbowPen"
+  ) {
+    e.target.style["background-color"] = `rgb(${red}, ${green}, ${blue})`;
+  }
+}
+
 function clearAll() {
   squares = document.querySelectorAll(".gridSquare");
 
@@ -115,7 +129,9 @@ function clearAll() {
   });
 }
 
-function ActiveBtn(newSelection) {
+function activeBtn(newSelection) {
+  currentSelection = newSelection;
+
   eraser.classList.remove("ActiveBtn");
   colorPen.classList.remove("ActiveBtn");
   randomRainbowPen.classList.remove("ActiveBtn");
@@ -127,4 +143,5 @@ function ActiveBtn(newSelection) {
   } else if (newSelection == "eraser") {
     eraser.classList.add("ActiveBtn");
   }
+  console.log(newSelection);
 }
